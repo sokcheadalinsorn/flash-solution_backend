@@ -1,40 +1,118 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
-import java.math.BigDecimal;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "products")
+@Entity 
+@Table (name = "products")
 public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+    
 
-    // Relationship with Brand
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
+    private String name;
+    private String description;
+    private float price;
+    private Integer stock_quanity;
+    private String imageUrL;
+    private String sku;
+
 
     // Relationship with Category
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne 
+    @JoinColumn (name = "category_id")
     private Category category;
 
-    String name;
 
-    BigDecimal price;
+    // Relationship with Brand
+    @ManyToOne 
+    @JoinColumn (name = "brand_id")
+    private Brand brand;
 
-    String description;
 
-    @Column(name = "stock_quantity")
-    Integer stockQuantity;
+    // Primary Key (id)
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id = id;
+    }
 
-    @Column(name = "image_url")
-    String imageUrl;
 
-    String sku;
+    // field name
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
 
-    public Product() {
+
+    // field Description
+    public String getDescription(){
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    // field price
+    public Float getPrice(){
+        return price;
+    }
+    public void setPrice(Float price ){
+        this.price = price;
+    }
+
+
+    // field stock_quanity
+    public Integer getStock_quanity(){
+        return stock_quanity;
+    }
+    public void setStock_quanity(Integer stock_quanity){
+        this.stock_quanity = stock_quanity;
+    }
+
+
+    // field imageUrl
+    public String getImageUrL(){
+        return imageUrL;
+    }
+    public void setImageUrL(String imageUrL){
+        this.imageUrL = imageUrL;
+    }
+
+
+    // field sku
+    public String getSku(){
+        return sku;
+    }
+    public void setSku(String sku){
+        this.sku = sku;
+    }
+
+
+    //relationship Brand
+    public Brand getBrand(){
+        return brand;
+    }
+    public void setBrand(Brand brand){
+        this.brand = brand;
+    }
+
+
+    //relationship Category
+    public Category getCategory(){
+        return category;
+    }
+    public void setCategory(Category category){
+        this.category = category;
     }
 }

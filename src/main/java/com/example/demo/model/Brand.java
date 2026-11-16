@@ -1,19 +1,19 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "brands")
+@Entity 
+@Table (name = "brands")
 public class Brand {
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
-
-    String logo;
-
-    public Brand() {
-    }
+    private String name;
+    
 }
