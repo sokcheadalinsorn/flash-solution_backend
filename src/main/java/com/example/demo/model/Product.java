@@ -11,51 +11,46 @@ import jakarta.persistence.Table;
 @Entity 
 @Table (name = "products")
 public class Product {
+
     @Id 
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
 
     private String name;
     private String description;
     private float price;
     private Integer stock_quanity;
-    private String imageUrL;
+    private String imageUrl;
     private String sku;
-
-
-    // Relationship with Category
-    @ManyToOne 
-    @JoinColumn (name = "category_id")
-    private Category category;
-
 
     // Relationship with Brand
     @ManyToOne 
     @JoinColumn (name = "brand_id")
     private Brand brand;
 
+    // Relationship with Category
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    // Primary Key (id)
-    public Long getId(){
+    
+    public Long getId() {
         return id;
     }
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
+    
 
-
-    // field name
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
 
-    // field Description
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
     public void setDescription(String description) {
@@ -63,56 +58,50 @@ public class Product {
     }
 
 
-    // field price
-    public Float getPrice(){
+    public float getPrice() {
         return price;
     }
-    public void setPrice(Float price ){
+    public void setPrice(float price) {
         this.price = price;
     }
 
 
-    // field stock_quanity
-    public Integer getStock_quanity(){
+    public Integer getStock_quanity() {
         return stock_quanity;
     }
-    public void setStock_quanity(Integer stock_quanity){
+    public void setStock_quanity(Integer stock_quanity) {
         this.stock_quanity = stock_quanity;
     }
 
 
-    // field imageUrl
-    public String getImageUrL(){
-        return imageUrL;
+    public String getImageUrl() {
+        return imageUrl;
     }
-    public void setImageUrL(String imageUrL){
-        this.imageUrL = imageUrL;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 
-    // field sku
-    public String getSku(){
+    public String getSku() {
         return sku;
     }
-    public void setSku(String sku){
+    public void setSku(String sku) {
         this.sku = sku;
     }
 
 
-    //relationship Brand
-    public Brand getBrand(){
+    public Brand getBrand() {
         return brand;
     }
-    public void setBrand(Brand brand){
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
 
-    //relationship Category
-    public Category getCategory(){
+    public Category getCategory() {
         return category;
     }
-    public void setCategory(Category category){
+    public void setCategory(Category category) {
         this.category = category;
     }
 }
