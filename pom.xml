@@ -91,7 +91,11 @@
             <artifactId>spring-boot-starter-data-jpa-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+<!-- BCrypt: Secure Password Hashing -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-crypto</artifactId>
+</dependency>
     </dependencies>
 
 	<build>
