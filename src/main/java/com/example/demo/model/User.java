@@ -1,8 +1,10 @@
 
 package com.example.demo.model;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     @Column(nullable = false, unique = true, length = 150)
@@ -24,7 +26,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, length = 20)
-    private String role = "Customer";
+    private String role = "CUSTOMER";
 
     @Column(nullable = false, length = 20)
     private String status = "Invited";
@@ -36,6 +38,15 @@ public class User {
     private LocalDateTime updatedAt;
 
     public User() {
+    }
+
+    // Constructor for customer registration
+    public User(String fullName, String email, String password) {
+        this.name = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = "CUSTOMER";
+        this.status = "Active";
     }
 
     @PrePersist
@@ -59,12 +70,24 @@ public class User {
         this.id = id;
     }
 
+    // Admin User Management uses name
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    // Login/Register compatibility: uses the same name column
+    @JsonIgnore
+    public String getFullName() {
+        return name;
+    }
+
+    @JsonIgnore
+    public void setFullName(String fullName) {
+        this.name = fullName;
     }
 
     public String getEmail() {
