@@ -49,6 +49,11 @@ public class ProductService {
         product.setImageUrl(updatedProduct.getImageUrl());
         product.setSku(updatedProduct.getSku());
 
+        // ADD THESE LINES
+        if (updatedProduct.getCategory() != null) {
+            product.setCategory(updatedProduct.getCategory());
+        }
+
         return productRepository.save(product);
     }
 
@@ -57,7 +62,7 @@ public class ProductService {
 
         if (!productRepository.existsById(id)) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Product not found");
+                HttpStatus.NOT_FOUND, "Product not found");
         }
 
         productRepository.deleteById(id);

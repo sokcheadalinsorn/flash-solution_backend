@@ -27,7 +27,9 @@ public class CategoryService {
     // GET CATEGORY BY ID
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Category not found"));
     }
 
     // CREATE CATEGORY
